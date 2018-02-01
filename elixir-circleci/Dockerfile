@@ -1,11 +1,13 @@
-FROM elixir:1.5.3
+ARG version
+
+FROM elixir:${version}
 
 LABEL description="Image for running Elixir on CircleCI with reporting to \
-CodeClimate" \
+  CodeClimate" \
   maintainer="NewAperio <hello@newaperio.com>" \
   vcs-url="https://github.com/newaperio/dockerfiles/" \
   vendor="NewAperio" \
-  version="0.0.1"
+  version=${version}
 
 ENV DOCKERIZE_VERSION=v0.6.0
 ENV MIX_ENV=test

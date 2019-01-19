@@ -2,7 +2,8 @@ ARG version
 
 FROM elixir:${version}
 
-LABEL description="Image for running Elixir on CircleCI" \
+LABEL description="Image for running Elixir on CircleCI with reporting to \
+  CodeClimate" \
   maintainer="NewAperio <hello@newaperio.com>" \
   vcs-url="https://github.com/newaperio/dockerfiles/" \
   vendor="NewAperio" \
@@ -20,6 +21,10 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
   && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Install Postgres CLI
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN apt-get update; apt-get install -y postgresql-client-10
+
+# Install CodeClimate reporter
+ADD https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 /usr/local/bin/cc-test-reporter
+RUN chmod +x /usr/local/bin/cc-test-reporter

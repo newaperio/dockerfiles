@@ -2,6 +2,8 @@
 
 This repo contains the Dockerfiles we use at [NewAperio](https://newaperio.com).
 
+**Note**: We are mostly using GitHub Actions these days instead of CircleCI and no longer use CodeClimate. These are likely to be unmaintained.
+
 ## Elixir / CircleCI
 
 [![DockerHub](https://img.shields.io/badge/dockerhub-latest-brightgreen.svg)](https://hub.docker.com/r/newaperio/elixir-circleci/)
